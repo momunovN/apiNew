@@ -19,8 +19,8 @@ app.use((err, req, res, next) => {
 
 app.get('/', (req, res) => {
   res.json({
-    title: "Movie Booking API",
-    description: "API for managing movie bookings",
+    title: "Мой API",
+    description: "API для курсача",
     version: "1.0.0",
     endpoints: {
       auth: "/api/auth",
