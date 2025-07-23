@@ -17,6 +17,18 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: 'Something went wrong!' });
 });
 
+app.get('/', (req, res) => {
+  res.json({
+    title: "Movie Booking API",
+    description: "API for managing movie bookings",
+    version: "1.0.0",
+    endpoints: {
+      auth: "/api/auth",
+      bookings: "/api/bookings"
+    }
+  });
+});
+
 // Запускаем сервер сразу, а подключение к DB делаем в фоне
 const PORT = process.env.PORT || 5000;
 const server = app.listen(PORT, '0.0.0.0', () => {
