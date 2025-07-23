@@ -22,16 +22,16 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: 'Something went wrong!' });
 });
 
-// Подключение к базе данных и экспорт для Vercel
+// Подключение к базе данных и запуск сервера
 const startServer = async () => {
   try {
     await connectDB();
     console.log('MongoDB connected');
 
-    if (process.env.NODE_ENV !== 'production') {
-      const PORT = process.env.PORT || 5000;
-      app.listen(PORT, () => console.log(`Local server running on port ${PORT}`));
-    }
+    const PORT = process.env.PORT || 5000;
+    app.listen(PORT, '0.0.0.0', () => {
+      console.log(`Server is running on http://0.0.0.0:${PORT}`);
+    });
   } catch (err) {
     console.error('Database connection error:', err);
     process.exit(1);
