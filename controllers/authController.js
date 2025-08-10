@@ -31,10 +31,12 @@ const register = async (req, res) => {
 const login = async (req, res) => {
   const { email, password } = req.body;
 
+  console.log('Attempting login for:', email);
+  
   try {
-    // Поиск пользователя
     const user = await User.findOne({ email });
     if (!user) {
+      console.log('User not found:', email);
       return res.status(400).json({ error: 'Invalid credentials' });
     }
 
