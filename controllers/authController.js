@@ -9,7 +9,7 @@ const register = async (req, res) => {
     // Проверка на существующего пользователя
     const existingUser = await User.findOne({ email });
     if (existingUser) {
-      return res.status(400).json({ error: 'Email already exists' });
+      return res.status(400).json({ error: 'Email Существует' });
     }
 
     // Создание пользователя
@@ -31,19 +31,19 @@ const register = async (req, res) => {
 const login = async (req, res) => {
   const { email, password } = req.body;
 
-  console.log('Attempting login for:', email);
+  console.log('Попытка входа в систему:', email);
   
   try {
     const user = await User.findOne({ email });
     if (!user) {
-      console.log('User not found:', email);
-      return res.status(400).json({ error: 'Invalid credentials' });
+      console.log('Пользователь не найден:', email);
+      return res.status(400).json({ error: 'Неверный Email или Пароль' });
     }
 
     // Проверка пароля
     const isMatch = await user.comparePassword(password);
     if (!isMatch) {
-      return res.status(400).json({ error: 'Invalid credentials' });
+      return res.status(400).json({ error: 'Неверный Email или Пароль' });
     }
 
     // Генерация токена

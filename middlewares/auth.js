@@ -15,8 +15,9 @@ const auth = async (req, res, next) => {
     req.user = user;
     next();
   } catch (err) {
-    res.status(401).json({ error: 'Please authenticate' });
+    res.status(401).json({ error: 'Пожалуйста войдите в личный кабинет' });
   }
 };
+
 
 module.exports = auth;
